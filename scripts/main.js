@@ -1,22 +1,20 @@
-$(function() {
+require.config({
+	paths:{
+		"jquery"	: "vendor/jquery/jquery.min", 
+		"creatable"	: "vendor/creatable/index", 
+		"codemirror": "vendor/codemirror/lib/codemirror", 
+		"codemirrorJavascriptMode": "vendor/codemirror/mode/javascript/javascript", 	
+		"codemirrorHTMLMode": "vendor/codemirror/mode/xml/xml", 	
+		"codemirrorHTMLMode": "vendor/codemirror/mode/xml/xml", 	
+	},
+	shim: {
+        'codemirrorJavascriptMode': ['codemirror'],
+        'codemirrorHTMLMode': ['codemirror'],        
+    }
+});
 
-	prettyPrint();
-
-	var docs = [
-
-		['p.centered', 'Creatable allows you to build HTML using Javascript without templates.'],
-
-		['.code_sample', [
-			['textarea.creatable_code', "['p', 'Hello World']"],
-			['span.arrow', { html: true }, '&rarr;'],
-			['textarea.html_code', "<p>Hello World</p>"],
-			['.clear']
-		]],
-
-		['p', 'This is another paragraph.']
-
-	];
-
-	$('.doc_wrapper').html(Creatable.create(docs));
-
+require([
+	'app',
+], function(App){
+	App();
 });

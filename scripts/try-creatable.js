@@ -1,30 +1,14 @@
-require.config({
-	paths:{
-		"jquery"	: "vendor/jquery/jquery.min", 
-		"creatable"	: "vendor/creatable/index", 
-		"codemirror": "vendor/codemirror/lib/codemirror", 
-		"codemirrorJavascriptMode": "vendor/codemirror/mode/javascript/javascript", 	
-		"codemirrorHTMLMode": "vendor/codemirror/mode/xml/xml", 	
-		"codemirrorHTMLMode": "vendor/codemirror/mode/xml/xml", 	
-	},
-	shim: {
-        'codemirrorJavascriptMode': ['codemirror'],
-        'codemirrorHTMLMode': ['codemirror'],        
-    }
-});
-
-require([
+define([
 	'jquery',
 	'creatable',
 	'codemirrorJavascriptMode',
 	'codemirrorHTMLMode',
 	'codemirror-formatting'
 
-], function($){
+], function(){
 	function renderCodeMirror(creatableEl, htmlEl){
 		var creatableCodeMirror = CodeMirror.fromTextArea(creatableEl, {
 			theme: 'blackboard',
-			height: "350px",
 		    autoMatchParens: true,
 			mode: {
 				name: 'javascript',
@@ -53,10 +37,7 @@ require([
 			}
 		});
 		
-		creatableCodeMirror.setValue("['.foo',[\n\t['p',[\n\t\t['a', { href:'google.com' }, 'google']\n\t]]\n]]");
 	};
 	
-	return {
-		render: renderCodeMirror
-	}
+	return renderCodeMirror
 });
